@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material';
+
 import { Applicant } from '../../models/Applicant';
 import { ApplicantService } from '../../applicant.service';
 
@@ -14,6 +16,7 @@ import 'datatables.net-bs4';
 })
 export class ListComponent implements OnInit {
   applicants: Applicant[];
+  displayedColumns = ['name', 'surname', 'ssn', 'dob', 'gender'];
   dataTable: any;
 
   constructor(
@@ -35,8 +38,12 @@ export class ListComponent implements OnInit {
       const table: any = $('table');
       this.dataTable = table.DataTable();
 
-      console.log('Data requested ...');
-      console.log(this.applicants);
+      // console.log('Data requested ...');
+      // console.log(this.applicants);
     });
+  }
+
+  updateApplicant(id) {
+    this.router.navigate([`/update/${id}`]);
   }
 }

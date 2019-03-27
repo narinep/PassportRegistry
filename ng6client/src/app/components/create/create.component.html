@@ -1,3 +1,56 @@
-<p>
-  create works!
-</p>
+<div>
+  <br />
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Create a New Applicant</h3>
+    </section>
+  </mat-card>
+  <mat-divider></mat-divider>
+  <br />
+  <form [formGroup]="createForm" class="create-form">
+    <mat-form-field class="field-full-width">
+      <input matInput placeholder="First Name:" formControlName="name" #name />
+    </mat-form-field>
+    <mat-form-field class="field-full-width">
+      <input
+        matInput
+        placeholder="Last Name:"
+        formControlName="surname"
+        #surname
+      />
+    </mat-form-field>
+    <mat-form-field class="field-full-width">
+      <input matInput placeholder="SSN:" formControlName="ssn" #ssn />
+    </mat-form-field>
+    <mat-form-field class="field-full-width">
+      <input matInput placeholder="Date of Birth:" formControlName="dob" #dob />
+    </mat-form-field>
+    <mat-form-field class="field-full-width">
+      <mat-select placeholder="Gender:" formControlName="gender" #gender>
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <br /><br />
+    <button mat-raised-button color="accent" routerLink="/list">Cancel</button
+    >&nbsp;
+    <button
+      type="submit"
+      (click)="
+        addApplicant(
+          name.value,
+          surname.value,
+          ssn.value,
+          dob.value,
+          gender.value
+        )
+      "
+      [disabled]="createForm.pristine || createForm.invalid"
+      mat-raised-button
+      color="primary"
+    >
+      Save
+    </button>
+  </form>
+</div>
