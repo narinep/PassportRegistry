@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Applicants List</h1>
+  <br /><br />
+  <hr />
+  <button type="button" class="btn btn-primary" routerLink="/create">
+    Create New Applicant
+  </button>
+  <br /><br />
+  <hr />
+  <br />
+  <table class="table table-hover" cellspacing="0">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>SSN</th>
+        <th>Date of Birth</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let applicant of applicants" (click)="onSelect(applicant)">
+        <td>{{ applicant.name }}</td>
+        <td>{{ applicant.surname }}</td>
+        <td>{{ applicant.ssn }}</td>
+        <td>{{ applicant.dob }}</td>
+        <td>{{ applicant.gender }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>SSN</th>
+        <th>Date of Birth</th>
+        <th>Gender</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

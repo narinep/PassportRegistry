@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material';
 
-import { Applicant } from '../../models/Applicant';
-import { ApplicantService } from '../../applicant.service';
+import { Applicant } from '../applicant.model';
+import { ApplicantService } from '../applicant.service';
 
 import * as $ from 'jquery';
 import 'datatables.net';
+// import 'datatables.net-dt';
 import 'datatables.net-bs4';
 
 @Component({
@@ -16,7 +16,7 @@ import 'datatables.net-bs4';
 })
 export class ListComponent implements OnInit {
   applicants: Applicant[];
-  displayedColumns = ['name', 'surname', 'ssn', 'dob', 'gender'];
+  selectedApplicant: Applicant;
   dataTable: any;
 
   constructor(
@@ -38,17 +38,18 @@ export class ListComponent implements OnInit {
       const table: any = $('table');
       this.dataTable = table.DataTable();
 
-      // console.log('Data requested ...');
-      // console.log(this.applicants);
+      console.log(this.applicants);
     });
   }
 
-  getRecord(row) {
-    console.log('Row: =====================');
-    console.log(row);
+  onSelect(applicant) {
+    ////////////    Navigate to Edit Form
+    console.log(applicant);
+    this.router.navigate([`/edit/${applicant._id}`]);
+    this.selectedApplicant = applicant;
   }
 
-  updateApplicant(id) {
-    this.router.navigate([`/update/${id}`]);
+  editApplicant(id) {
+    this.router.navigate([`/edit/${id}`]);
   }
 }
