@@ -4,6 +4,9 @@ import { StringDecoder } from 'string_decoder';
 const Schema = mongoose.Schema;
 
 let Applicant = new Schema({
+  id: {
+    type: String
+  },
   name: {
     type: String
   },

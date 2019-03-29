@@ -29,13 +29,13 @@ export class ApplicantService {
   }
 
   editApplicant(id, name, surname, ssn, dob, gender) {
-    const applicant = {
+    const applicantDetails = {
       name: name,
       surname: surname,
       ssn: ssn,
       dob: dob,
       gender: gender
     };
-    return this.http.put(`${this.uri}/edit/${id}`, applicant);
+    return this.http.put(`${this.uri}/update/${id}`, applicantDetails);
   }
 }

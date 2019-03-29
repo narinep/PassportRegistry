@@ -24,15 +24,24 @@ export class CreateComponent implements OnInit {
         this.router.navigate(['/list']);
       });
   }
-  onSubmit() {
-    // console.log(this.registerForm.value);
 
+  onSubmit() {
     if (!this.registerForm.valid) {
       alert('Invalid Form');
       return;
     }
-    alert('Success! ' + JSON.stringify(this.registerForm.value));
-    // addApplicant.....
+
+    // TODO: Custom validation if needed
+
+    const applicant = this.registerForm.value;
+    // alert(JSON.stringify(this.applicant));
+    this.addApplicant(
+      applicant.name,
+      applicant.surname,
+      applicant.ssn,
+      applicant.dob,
+      applicant.gender
+    );
   }
 
   onCancel() {
