@@ -40,22 +40,56 @@ cd LOCATION_WHERE_CLONED/passport-registry/ng6front
 npm install
 ng serve -o
 
+=> 'Passport Registry' SPA is opened in your default browser.
+
 # Functional Description
 
-'Passport Registry' SPA is opened in your default browser.
+Currently the application covers three pages (components):
+'Applicants List' ('list')
+'Create a New Applicant' ('create') and
+'Applicant Details' ('edit')
 
-Currently it is redirected to the 'Applicants List' page where you can see the list of registered applicants as a JQuery DataTable or Create a New Applicant by clicking a button of the same name.
+# List
 
-It's worth to prepare several records in database manually, since currently the recording to DB is stubbed.
+The 'Applicants List' page is used as the application's Home page.
+There you can:
+View the list of registered Applicants in the form of a jQuery DataTable with Searching, Ordering and Paging;
+Create a new Applicant by clicking the 'Create New Applicant' button or
+View and Edit the Applicant Details by selecting and pressing “Enter” in the corresponding row.
 
-After clicking on 'Create New Applicant' button, the 'Create a New Appliacnt' Form is opened.
-The 'SSN' field is mandatory and noted as a 'Required field'.
-The 'Save' button is disabled until you fill 'SSN' field.
-'Cancel' button returns to the 'List' page.
-'Save' button shows an entered data in a message box.
+Clicking on the 'Create New Applicant' button will redirect you to the 'create' page -
+'Create a New Appliacnt' Form will be opened.
 
-Clicking on the table row redirects to the 'Edit' page.
-It is in progress, we just can see the extracted data in console log via Developer Tool (click F12 on browser to open it)
+Clicking on the table row will redirect you to the 'edit' page -
+'Applicant Details' Form will be opened.
+
+# Create
+
+'Create a New Appliacnt' Form is opened:
+
+The 'SSN' field is mandatory and marked as a 'Required field'.
+
+The 'Save' button will be disabled until you fill in the 'SSN' field.
+
+Clicking on the 'Cancel' button will redirect you to the 'listl page.
+
+Clicking on the 'Save' button will redirect you to the 'list' page, where you will find a new row added to the table, consisting of new Applicant data.
+
+The new created Applicant data will be stored as a new Document in the 'applicants' Collection of the 'applicants' Database.
+
+# Edit
+
+'Appliacnt Details' Form is opened:
+
+The 'SSN' field is mandatory and marked as a 'Required field'.
+
+The 'Save' button will be disabled until you fill in the 'SSN' field.
+
+Clicking on the 'Cancel' button will redirect you to the 'list' page.
+
+Clicking on the 'Save' button will redirect you to the 'list' page, the Applicant data must be updated both in the list and in the database.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 # Ng6front
 
