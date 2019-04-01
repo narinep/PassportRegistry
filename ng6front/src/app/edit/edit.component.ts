@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Applicant } from '../applicant.model';
 import { ApplicantService } from '../applicant.service';
+import { ConfirmDlgService } from '../confirm-dlg/confirm-dlg.service';
 
 @Component({
   selector: 'app-edit',
@@ -19,7 +20,8 @@ export class EditComponent implements OnInit {
     private applicantService: ApplicantService,
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private confirmDlgService: ConfirmDlgService
   ) {}
 
   createForm() {
@@ -36,9 +38,6 @@ export class EditComponent implements OnInit {
     this.applicantService
       .editApplicant(this.id, name, surname, ssn, dob, gender)
       .subscribe(() => {
-        alert(
-          'Applicant updated successfully: ' + JSON.stringify(this.applicant)
-        );
         this.router.navigate(['/list']);
       });
   }
@@ -51,13 +50,20 @@ export class EditComponent implements OnInit {
 
     // TODO: Custom validation if needed
 
-    this.updateApplicant(
-      this.updateForm.value.name,
-      this.updateForm.value.surname,
-      this.updateForm.value.ssn,
-      this.updateForm.value.dob,
-      this.updateForm.value.gender
-    );
+    this.confirmDlgService
+      .confirm('Please Confirm', 'Do you really want to save ?')
+      .then(confirmed => {
+        if (confirmed) {
+          this.updateApplicant(
+            this.updateForm.value.name,
+            this.updateForm.value.surname,
+            this.updateForm.value.ssn,
+            this.updateForm.value.dob,
+            this.updateForm.value.gender
+          );
+        }
+      })
+      .catch(() => {});
   }
 
   onCancel() {

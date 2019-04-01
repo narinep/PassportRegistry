@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApplicantService } from '../applicant.service';
+import { ConfirmDlgService } from '../confirm-dlg/confirm-dlg.service';
 
 @Component({
   selector: 'app-create',
@@ -14,7 +15,8 @@ export class CreateComponent implements OnInit {
   constructor(
     private applicantService: ApplicantService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private confirmDlgService: ConfirmDlgService
   ) {}
 
   addApplicant(name, surname, ssn, dob, gender) {
@@ -33,15 +35,22 @@ export class CreateComponent implements OnInit {
 
     // TODO: Custom validation if needed
 
-    const applicant = this.registerForm.value;
-    // alert(JSON.stringify(this.applicant));
-    this.addApplicant(
-      applicant.name,
-      applicant.surname,
-      applicant.ssn,
-      applicant.dob,
-      applicant.gender
-    );
+    this.confirmDlgService
+      .confirm('Please Confirm', 'Do you really want to save ?')
+      .then(confirmed => {
+        if (confirmed) {
+          const applicant = this.registerForm.value;
+
+          this.addApplicant(
+            applicant.name,
+            applicant.surname,
+            applicant.ssn,
+            applicant.dob,
+            applicant.gender
+          );
+        }
+      })
+      .catch(() => {});
   }
 
   onCancel() {
