@@ -21,6 +21,9 @@ let Applicant = new Schema({
   },
   gender: {
     type: String
+  },
+  photo: {
+    type: String
   }
 });
 

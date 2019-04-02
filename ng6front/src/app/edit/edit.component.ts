@@ -30,13 +30,14 @@ export class EditComponent implements OnInit {
       surname: '',
       ssn: ['', Validators.required],
       dob: '',
-      gender: ''
+      gender: '',
+      photo: ''
     });
   }
 
-  updateApplicant(name, surname, ssn, dob, gender) {
+  updateApplicant(name, surname, ssn, dob, gender, photo) {
     this.applicantService
-      .editApplicant(this.id, name, surname, ssn, dob, gender)
+      .editApplicant(this.id, name, surname, ssn, dob, gender, photo)
       .subscribe(() => {
         this.router.navigate(['/list']);
       });
@@ -59,7 +60,8 @@ export class EditComponent implements OnInit {
             this.updateForm.value.surname,
             this.updateForm.value.ssn,
             this.updateForm.value.dob,
-            this.updateForm.value.gender
+            this.updateForm.value.gender,
+            this.updateForm.value.photo
           );
         }
       })
@@ -82,6 +84,7 @@ export class EditComponent implements OnInit {
         this.updateForm.get('ssn').setValue(this.applicant.ssn);
         this.updateForm.get('dob').setValue(this.applicant.dob);
         this.updateForm.get('gender').setValue(this.applicant.gender);
+        this.updateForm.get('photo').setValue(this.applicant.photo);
       });
     });
   }

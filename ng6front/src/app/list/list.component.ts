@@ -43,13 +43,8 @@ export class ListComponent implements OnInit {
   }
 
   onSelect(applicant) {
-    ////////////    Navigate to Edit Form
-    console.log(applicant);
-    this.router.navigate([`/edit/${applicant._id}`]);
+    // this.router.navigate([`/edit/${applicant._id}`]);  // MongoDB
+    this.router.navigate([`/edit/${applicant.id}`]); // PostgreSQL
     this.selectedApplicant = applicant;
-  }
-
-  editApplicant(id) {
-    this.router.navigate([`/edit/${id}`]);
   }
 }

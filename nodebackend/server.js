@@ -34,7 +34,8 @@ router.route('/applicants/:id').get((req, res) => {
   });
 });
 
-router.route('/applicants/add').post((req, res) => {
+// router.route('/applicants/add').post((req, res) => {
+router.route('/applicants').post((req, res) => {
   let applicant = new Applicant(req.body);
   applicant
     .save()
@@ -48,7 +49,8 @@ router.route('/applicants/add').post((req, res) => {
     });
 });
 
-router.route('/applicants/update/:id').put((req, res) => {
+// router.route('/applicants/update/:id').put((req, res) => {
+router.route('/applicants/:id').put((req, res) => {
   Applicant.findById(req.params.id, (err, applicant) => {
     if (!applicant) {
       return next(new Error('Could not load document'));
@@ -58,6 +60,7 @@ router.route('/applicants/update/:id').put((req, res) => {
       applicant.ssn = req.body.ssn;
       applicant.dob = req.body.dob;
       applicant.gender = req.body.gender;
+      applicant.photo = req.body.photo;
 
       applicant
         .save()
@@ -73,6 +76,7 @@ router.route('/applicants/update/:id').put((req, res) => {
   });
 });
 
+/*
 router.route('/applicants/delete/:id').get((req, res) => {
   Applicant.findByIdAndRemove(
     {
@@ -87,7 +91,7 @@ router.route('/applicants/delete/:id').get((req, res) => {
     }
   );
 });
-
+*/
 app.use('/', router);
 
 app.listen(3030, () => console.log('Express server running on port 3030'));

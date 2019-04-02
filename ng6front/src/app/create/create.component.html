@@ -7,6 +7,9 @@
     <div>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
+          <label for="photo">Photo:</label>
+          <input type="text" class="form-control" formControlName="photo" />
+          <br />
           <label for="name">First Name:</label>
           <input type="text" class="form-control" formControlName="name" />
           <br />

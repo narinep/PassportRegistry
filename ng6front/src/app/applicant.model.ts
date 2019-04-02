@@ -5,4 +5,5 @@ export interface Applicant {
   ssn: Number;
   dob: Date;
   gender: String;
+  photo: String;
 }

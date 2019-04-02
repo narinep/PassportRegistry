@@ -19,9 +19,9 @@ export class CreateComponent implements OnInit {
     private confirmDlgService: ConfirmDlgService
   ) {}
 
-  addApplicant(name, surname, ssn, dob, gender) {
+  addApplicant(name, surname, ssn, dob, gender, photo) {
     this.applicantService
-      .addApplicant(name, surname, ssn, dob, gender)
+      .addApplicant(name, surname, ssn, dob, gender, photo)
       .subscribe(() => {
         this.router.navigate(['/list']);
       });
@@ -46,7 +46,8 @@ export class CreateComponent implements OnInit {
             applicant.surname,
             applicant.ssn,
             applicant.dob,
-            applicant.gender
+            applicant.gender,
+            applicant.photo
           );
         }
       })
@@ -63,7 +64,8 @@ export class CreateComponent implements OnInit {
       surname: '',
       ssn: ['', Validators.required],
       dob: '',
-      gender: ''
+      gender: '',
+      photo: ''
     });
   }
 }

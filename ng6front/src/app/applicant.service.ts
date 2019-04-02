@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApplicantService {
-  uri = 'http://localhost:3030/applicants';
+  // uri = 'http://localhost:3030/applicants';  // Node.js server
+  uri = 'http://localhost:8080/applicants'; // Spring-boot server
 
   constructor(private http: HttpClient) {}
 
@@ -17,25 +18,29 @@ export class ApplicantService {
     return this.http.get(`${this.uri}/${id}`);
   }
 
-  addApplicant(name, surname, ssn, dob, gender) {
+  addApplicant(name, surname, ssn, dob, gender, photo) {
     const applicant = {
       name: name,
       surname: surname,
       ssn: ssn,
       dob: dob,
-      gender: gender
+      gender: gender,
+      photo: photo
     };
-    return this.http.post(`${this.uri}/add`, applicant);
+
+    return this.http.post(`${this.uri}`, applicant);
   }
 
-  editApplicant(id, name, surname, ssn, dob, gender) {
+  editApplicant(id, name, surname, ssn, dob, gender, photo) {
     const applicantDetails = {
       name: name,
       surname: surname,
       ssn: ssn,
       dob: dob,
-      gender: gender
+      gender: gender,
+      photo: photo
     };
-    return this.http.put(`${this.uri}/update/${id}`, applicantDetails);
+
+    return this.http.put(`${this.uri}/${id}`, applicantDetails);
   }
 }
